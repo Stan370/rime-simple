@@ -1,0 +1,5 @@
+# Rime schema configuration
+patch:
+  translator:
+    comment_format: "%s"
+

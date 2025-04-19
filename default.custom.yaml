@@ -1,0 +1,7 @@
+patch:
+  schema_list:
+    - schema: rime_ice
+    - schema: easy_en
+    - schema: double_pinyin_flypy    # 小鹤双拼
+menu:
+  page_size: 9
