@@ -17,17 +17,18 @@ schema:
     - radical_pinyin  # 部件拆字，反查及辅码
 
 
-# 开关
-# reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。
+# reset: 默认状态。注释掉后，切换窗口时不会重置到默认状态。dd放撒地faffasdfFasffannfsdfasdf
 # states: 方案选单显示的名称。可以注释掉，仍可以通过快捷键切换。
 # abbrev: 默认的缩写取 states 的第一个字符，abbrev 可自定义一个字符
 switches:
   - name: ascii_mode
     states: [ 中, Ａ ]
+    reset: 1
   - name: ascii_punct  # 中英标点
     states: [ ¥, $ ]
   - name: traditionalization
     states: [ 简, 繁 ]
+    reset: 1  # reset=1 表示默认用“简”
   - name: emoji
     states: [ 💀, 😄 ]
     reset: 1
@@ -82,22 +83,23 @@ engine:
     - lua_filter@*long_word_filter                  # 长词优先（顺序要求：长词优先 > Emoji）
     - lua_filter@*reduce_english_filter             # 降低部分英语单词在候选项的位置
     - simplifier@emoji                              # Emoji
-    - simplifier@traditionalize                     # 简繁切换
+    - simplifier
+
     - lua_filter@*search@radical_pinyin             # 部件拆字辅码
     - uniquifier                                    # 去重
 
 
 # Lua 配置: 日期、时间、星期、ISO 8601、时间戳的触发关键字
 date_translator:
-  date: rq       # 日期： 2022-11-29
-  time: sj       # 时间： 18:13
+  date: date       # 日期： 2022-11-29
+  time: time       # 时间： 18:13
   week: xq       # 星期： 星期二
-  datetime: dt   # ISO 8601： 2022-11-29T18:13:11+08:00
-  timestamp: ts  # 时间戳： 1669716794
+  datetime: datetime   # ISO 8601： 2022-11-29T18:13:11+08:00
+  timestamp: timestamp  # 时间戳： 1669716794
 
 
 # Lua 配置：农历的触发关键字
-lunar: nl  # 农历： 二〇二三年冬月二十 癸卯年（兔）冬月二十
+lunar: lunar  # 农历： 二〇二三年冬月二十 癸卯年（兔）冬月二十
 
 
 # Lua 配置：长词优先
